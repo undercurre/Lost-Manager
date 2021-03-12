@@ -6,7 +6,8 @@
 
 <script>
 export default {
-name: "GoodsManager"
+  name: "GoodsManager",
+
 }
 </script>
 
