@@ -143,5 +143,8 @@ export default {
 .getDataBtn{
   margin-left: 20px;
 }
-
+.el-pagination{
+  display: flex;
+  justify-content: space-between;
+}
 </style>
