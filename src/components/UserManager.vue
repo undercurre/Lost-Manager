@@ -145,6 +145,6 @@ export default {
 }
 .el-pagination{
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 </style>
