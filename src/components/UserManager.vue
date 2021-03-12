@@ -101,7 +101,7 @@ export default {
         wx: 'sjaknndksfna',
         password: '1danbdj'
       }, {
-        username: 'big懒猪',
+        username: 'small懒猪',
         realname: '王小虎',
         num: '20189890990',
         telephone: '12345850868',
