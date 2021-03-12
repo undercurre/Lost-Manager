@@ -143,5 +143,4 @@ export default {
 .getDataBtn{
   margin-left: 20px;
 }
-
 </style>
