@@ -10,10 +10,8 @@
           start-placeholder="开始时间"
           end-placeholder="结束时间">
       </el-date-picker>
-      <el-checkbox-group v-model="checkList">
-        <el-checkbox label="未认领"></el-checkbox>
-        <el-checkbox label="已认领"></el-checkbox>
-      </el-checkbox-group>
+      <el-radio v-model="checkList" :label="((historyType === 'lost') ? '未认领' : '寻找中' )">{{ (historyType === 'lost') ? '未认领' : '寻找中'  }}</el-radio>
+      <el-radio v-model="checkList" :label="((historyType === 'lost') ? '已认领' : '已归还' )">{{ (historyType === 'lost') ? '已认领' : '已归还'  }}</el-radio>
       <el-button type="primary" icon="el-icon-search" size="mini">搜索</el-button>
     </div>
     <div class="list">
@@ -24,24 +22,24 @@
             <div style="padding: 14px;" class="card_text">
               <div class="card_header">
                 <span class="title">{{ item.name }}</span>
-                <span :class=" item.status ? 'gray' : '' ">{{ item.status ? "已认领" : "等待认领" }}</span>
+                <span :class=" item.status ? 'gray' : '' ">{{ item.status ? ((historyType === 'lost') ? '已认领' : '已归还' ) : ((historyType === 'lost') ? '等待认领' : '寻找中' ) }}</span>
               </div>
               <div class="clearfix">
                 <ul>
                   <li>
-                    <label>拾物地点：</label>
+                    <label>{{ (historyType === 'lost') ? '拾物' : '丢失'  }}地点：</label>
                     <span class="weight">{{ item.place }}</span>
                   </li>
                   <li>
-                    <label>拾物时间：</label>
+                    <label>{{ (historyType === 'lost') ? '拾物' : '丢失'  }}时间：</label>
                     <span class="weight">{{ item.time }}</span>
                   </li>
                   <li>
-                    <label>拾物描述：</label>
+                    <label>{{ (historyType === 'lost') ? '拾物' : '失物'  }}描述：</label>
                     <span class="weight">{{ item.detail }}</span>
                   </li>
                   <li>
-                    <label>拾物者联系方式：</label>
+                    <label>{{ (historyType === 'lost') ? '拾物者' : '失主'  }}联系方式：</label>
                     <span class="weight">{{ item.telephone }}</span>
                   </li>
                   <li class="lastLine">
@@ -62,7 +60,7 @@
       </ul>
     </div>
     <el-dialog
-        title="修改发布的失物招领"
+        :title="'修改发布的' + ((historyType === 'lost') ? '寻物启事' : '失物招领' )"
         :visible.sync="updateVisable"
         width="80%"
         :before-close="handleClose">
@@ -79,6 +77,12 @@ import FillForm from "@/components/FillForm";
 export default {
   name: "lostHistory",
   components: {FillForm},
+  props: {
+    historyType: {
+      type: String,
+      default: "lost"
+    }
+  },
   data(){
     return {
       date: '',

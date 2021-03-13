@@ -10,7 +10,7 @@
             <el-input v-model="form.password" placeholder="请输入密码"></el-input>
           </el-form-item>
           <router-link to="/setPassword" class="forget">忘了密码？</router-link>
-          <el-button class="sub_btn" type="primary" @click="onSubmit" round>登录</el-button>
+          <el-button class="sub_btn" type="primary" @click="onSubmit('user')" round>登录</el-button>
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="管理员登录" name="second">
@@ -22,7 +22,7 @@
             <el-input v-model="form.password" placeholder="请输入密码"></el-input>
           </el-form-item>
           <router-link to="/setPassword" class="forget">忘了密码？</router-link>
-          <el-button class="sub_btn" type="primary" @click="onSubmit" round>登录</el-button>
+          <el-button class="sub_btn" type="primary" @click="onSubmit('manager')" round>登录</el-button>
         </el-form>
       </el-tab-pane>
     </el-tabs>
@@ -44,7 +44,8 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    onSubmit(userType) {
+      sessionStorage.setItem('userType',userType);
       router.push({name: 'personal', params: {nav: '/personal', content: '/personalData'}});
     }
   }

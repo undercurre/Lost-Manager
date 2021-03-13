@@ -54,15 +54,7 @@ const router = new Router({
                     name: 'lostHistory',
                     component: () => import('./components/lostHistory'),
                     meta: {
-                        title: '查询失物招领发布历史',
-                    }
-                },
-                {
-                    path: '/searchHistory',
-                    name: 'searchHistory',
-                    component: () => import('./components/searchHistory'),
-                    meta: {
-                        title: '查询寻物启事发布历史',
+                        title: '查询失物招领/寻找发布历史',
                     }
                 },
                 {
@@ -74,7 +66,15 @@ const router = new Router({
                     }
                 }
             ]
-        }
+        },
+        {
+            path: '/LostCard',
+            name: 'LostCard',
+            component: () => import('./components/LostCard'),
+            meta: {
+                title: '招领启事',
+            }
+        },
     ]
 })
 

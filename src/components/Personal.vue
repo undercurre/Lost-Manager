@@ -10,10 +10,10 @@
         active-text-color="#ffd04b"
         router>
       <el-menu-item index="1" v-if="!isManager">首页</el-menu-item>
-      <el-menu-item index="2" v-if="!isManager">寻物启事</el-menu-item>
-      <el-menu-item index="3" v-if="!isManager">招领启事</el-menu-item>
+      <el-menu-item index="/LostCard?cardType=search" v-if="!isManager">寻物启事</el-menu-item>
+      <el-menu-item index="/LostCard?cardType=lost" v-if="!isManager">招领启事</el-menu-item>
       <el-menu-item index="/personal" v-if="!isManager">个人中心</el-menu-item>
-      <el-menu-item index="/login" v-if="isManager">登录</el-menu-item>
+      <el-menu-item index="/login">登录</el-menu-item>
     </el-menu>
     <el-tabs tab-position='left'
              stretch>
@@ -21,10 +21,10 @@
         <PersonalData></PersonalData>
       </el-tab-pane>
       <el-tab-pane label="查询失物招领发布历史" v-if="!isManager">
-        <lost-history></lost-history>
+        <lost-history historyType='lost'></lost-history>
       </el-tab-pane>
       <el-tab-pane label="查询寻物启事发布历史" v-if="!isManager">
-        <search-history></search-history>
+        <lost-history historyType='search'></lost-history>
       </el-tab-pane>
       <el-tab-pane label="留言管理" v-if="!isManager">
         <message-manager></message-manager>
@@ -42,27 +42,29 @@
 <script>
 import PersonalData from "@/components/PersonalData";
 import LostHistory from "@/components/lostHistory";
-import SearchHistory from "@/components/searchHistory";
 import MessageManager from "@/components/messageManager";
 import UserManager from "@/components/UserManager";
 import GoodsManager from "@/components/GoodsManager";
 export default {
   name: "Personal",
-  components: {GoodsManager, UserManager, MessageManager, SearchHistory, LostHistory, PersonalData},
+  components: {GoodsManager, UserManager, MessageManager, LostHistory, PersonalData},
   data(){
     return {
       activeNav: this.$route.params.nav,
       activeContent: this.$route.params.content,
-      isManager: 1,
+      isManager: 0,
     }
   },
   methods: {
     handleSelect(e){
       console.log(e);
     },
+    judUserType() {
+      (sessionStorage.getItem('userType') === 'user') ? this.isManager = 0 : this.isManager = 1;
+    }
   },
   created() {
-    console.log(this.$route.params.nav)
+    this.judUserType();
   }
 }
 </script>
