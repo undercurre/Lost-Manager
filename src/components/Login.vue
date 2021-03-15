@@ -44,8 +44,7 @@ export default {
     }
   },
   methods: {
-    onSubmit(userType) {
-      sessionStorage.setItem('userType',userType);
+    onSubmit() {
       router.push({name: 'personal', params: {nav: '/personal', content: '/personalData'}});
     }
   }

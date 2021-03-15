@@ -52,19 +52,15 @@ export default {
     return {
       activeNav: this.$route.params.nav,
       activeContent: this.$route.params.content,
-      isManager: 0,
+      isManager: this.$store.state.identity,
     }
   },
   methods: {
     handleSelect(e){
       console.log(e);
     },
-    judUserType() {
-      (sessionStorage.getItem('userType') === 'user') ? this.isManager = 0 : this.isManager = 1;
-    }
   },
   created() {
-    this.judUserType();
   }
 }
 </script>
