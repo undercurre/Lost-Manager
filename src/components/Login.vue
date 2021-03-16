@@ -68,6 +68,6 @@ export default {
     color: #f22;
     font-size: 10px;
     float: right;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 </style>
