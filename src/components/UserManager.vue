@@ -141,7 +141,7 @@ export default {
   justify-content: flex-start;
 }
 .getDataBtn{
-  margin-left: 18px;
+  margin-left: 20px;
 }
 .el-pagination{
   display: flex;
